@@ -1,0 +1,2 @@
+(this["webpackJsonpib-spanish-rubric"]=this["webpackJsonpib-spanish-rubric"]||[]).push([[0],[,,,function(n,e,t){n.exports=t(4)},function(n,e,t){"use strict";t.r(e);var r=t(0),i=t.n(r),s=t(2);t.n(s).a.render((function(){return i.a.createElement("div",null,"Hello React")}),document.getElementById("root"))}],[[3,1,2]]]);
+//# sourceMappingURL=main.5efaccf6.chunk.js.map
