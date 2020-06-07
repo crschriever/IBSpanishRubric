@@ -181,7 +181,8 @@ export default class Rubric extends React.Component {
 
         this.state.categories.forEach((category, colIndex) => {
             //default score
-            scores.push(this.state.rows[0].points)
+            // scores.push(this.state.rows[0].points)
+            scores.push(0)
 
             let sum = 0
             let count = 0
