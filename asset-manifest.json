@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/IBSpanishRubric/static/js/main.b11dc4b7.chunk.js",
-    "main.js.map": "/IBSpanishRubric/static/js/main.b11dc4b7.chunk.js.map",
+    "main.js": "/IBSpanishRubric/static/js/main.9913361d.chunk.js",
+    "main.js.map": "/IBSpanishRubric/static/js/main.9913361d.chunk.js.map",
     "runtime-main.js": "/IBSpanishRubric/static/js/runtime-main.fca47457.js",
     "runtime-main.js.map": "/IBSpanishRubric/static/js/runtime-main.fca47457.js.map",
     "static/js/2.5a021ed6.chunk.js": "/IBSpanishRubric/static/js/2.5a021ed6.chunk.js",
     "static/js/2.5a021ed6.chunk.js.map": "/IBSpanishRubric/static/js/2.5a021ed6.chunk.js.map",
     "index.html": "/IBSpanishRubric/index.html",
-    "precache-manifest.da82f0b9621738dea9f3c795de5e7ce8.js": "/IBSpanishRubric/precache-manifest.da82f0b9621738dea9f3c795de5e7ce8.js",
+    "precache-manifest.f52422c4fcc735d7741f9bc8811f6e6a.js": "/IBSpanishRubric/precache-manifest.f52422c4fcc735d7741f9bc8811f6e6a.js",
     "service-worker.js": "/IBSpanishRubric/service-worker.js",
     "static/js/2.5a021ed6.chunk.js.LICENSE.txt": "/IBSpanishRubric/static/js/2.5a021ed6.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.fca47457.js",
     "static/js/2.5a021ed6.chunk.js",
-    "static/js/main.b11dc4b7.chunk.js"
+    "static/js/main.9913361d.chunk.js"
   ]
 }

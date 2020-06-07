@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/IBSpanishRubric/precache-manifest.da82f0b9621738dea9f3c795de5e7ce8.js"
+  "/IBSpanishRubric/precache-manifest.f52422c4fcc735d7741f9bc8811f6e6a.js"
 );
 
 self.addEventListener('message', (event) => {
