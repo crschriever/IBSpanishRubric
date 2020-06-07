@@ -39,7 +39,7 @@ export default class Rubric extends React.Component {
                 },
                 { 
                     headerContent: "<u>Proficient</u> Application of Language, Message and Conceptual Understanding",
-                    points: 3,
+                    points: 4,
                     cells: [
                         [
                             "A mix of basic and complex grammar used",
@@ -120,6 +120,8 @@ export default class Rubric extends React.Component {
             });
         });
 
+        this.state.scores = this.calculateColScores()
+
         this.onRubricItemClick = this.onRubricItemClick.bind(this);
     }
 
@@ -135,7 +137,7 @@ export default class Rubric extends React.Component {
                         </RubricCol>
                         {this.state.categories.map((item, i) => {
                             return (
-                                <RubricHeader key={i} score="5">
+                                <RubricHeader key={i} score={this.state.scores[i]}>
                                     {item}
                                 </RubricHeader>
                             )
@@ -170,6 +172,35 @@ export default class Rubric extends React.Component {
 
     onRubricItemClick(row, col, itemNumber) {
         this.state.selectedMatrix[row][col][itemNumber] = !this.state.selectedMatrix[row][col][itemNumber]
-        this.setState({selectedMatrix: this.state.selectedMatrix})
+
+        this.setState({selectedMatrix: this.state.selectedMatrix, scores: this.calculateColScores()})
+    }
+
+    calculateColScores() {
+        let scores = []
+
+        this.state.categories.forEach((category, colIndex) => {
+            //default score
+            scores.push(this.state.rows[0].points)
+
+            let sum = 0
+            let count = 0
+
+            this.state.selectedMatrix.forEach((row, rowIndex) => {
+                row[colIndex].forEach(selected => {
+                    if (selected) {
+                        count++
+                        sum += this.state.rows[rowIndex].points
+                    }
+                });
+            });
+
+            if (count > 0) {
+                scores[colIndex] = Math.round(sum / count)
+            }
+
+        });
+
+        return scores
     }
 }
