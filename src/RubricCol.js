@@ -9,8 +9,9 @@ export default class RubricCol extends React.Component {
 
     render() {
         if (this.props.header) {
-            return <th scope="col" style={{textAlign: "center"}}>{this.props.children}</th>
+            return <th colSpan="2" scope="col" style={{textAlign: "center"}}>{this.props.children}</th>
         }
-        return <td style={{textAlign: "center"}}>{this.props.children}</td>
+
+        return <td colSpan="2" style={{textAlign: "center"}}>{this.props.children}</td>
     }
 }

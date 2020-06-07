@@ -4,241 +4,172 @@ import RubricRow from './RubricRow'
 import RubricCol from './RubricCol'
 import RubricItemList from './RubricItemList';
 import RubricItem from './RubricItem';
+import RubricHeader from './RubricHeader';
 
 export default class Rubric extends React.Component {
 
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            assignmentDescription: "Modified IB Written (Text Type) Assessment Rubric (15pts)",
+            categories: ["Language", "Message", "Conceptual Understanding"],
+            rows: [
+                { 
+                    headerContent: "<u>Superior</u> Application of Language, Message and Conceptual Understanding",
+                    points: 5,
+                    cells: [
+                        [
+                            "Varied complexity of grammar",
+                            "Sophisticated/complex structures used effectively",
+                            "Vocab appropriate and varied with distinct idiomatic expressions",
+                            "Language is accurate except for perhaps an occasional minor error in complex structures",
+                        ],
+                        [
+                            "Ideas are fully developed, providing strong details, relevant examples and evidence",
+                            "Superior level of substantiating one's claim",
+                            "Ideas are clearly structured in a logical manner, which strongly support the delivery of the message",
+                        ],
+                        [
+                            "The choice of text type is clearly appropriate to the context, purpose and audience.",
+                            "The register and tone are clearly appropriate to the context, purpose and audience of the task.",
+                            "The response fully incorporates the conventions of the chosen text.",
+                        ],
+                    ],
+                },
+                { 
+                    headerContent: "<u>Proficient</u> Application of Language, Message and Conceptual Understanding",
+                    points: 3,
+                    cells: [
+                        [
+                            "A mix of basic and complex grammar used",
+                            "Vocab appropriate and varied",
+                            "Occasional errors in both basic and complex grammatical structures",
+                            "Errors do not interfere with communication",
+                        ],
+                        [
+                            "Most ideas are relevant",
+                            "Ideas are adequately developed which include some details/examples",
+                            "Ideas are structured in a manner, which generally supports the delivery",
+                        ],
+                        [
+                            "The choice of text type is generally appropriate to the context, purpose and audience.",
+                            "The register and tone, while occasionally appropriate to the context, purpose and audience of the task, fluctuate throughout the response.",
+                            "The response incorporates some conventions of the chosen text type.",
+                        ],
+                    ],
+                },
+                { 
+                    headerContent: "<u>Limited</u> Application of Language, Message and Conceptual Understanding",
+                    points: 3,
+                    cells: [
+                        [
+                            "Vocab is generally appropriate",
+                            "Mostly basic grammar structures",
+                            "Language is mostly accurate for basic structures",
+                            "Errors in more complex structures",
+                            "Errors at times interfere with communication",
+                        ],
+                        [
+                            "Some ideas are relevant to the task",
+                            "Ideas outlined but not fully developed",
+                            "Ideas are presented and structured in a way that leads to a more or less successful delivery of the message",
+                        ],
+                        [
+                            "The choice of text type is partially appropriate to the context, purpose or audience.",
+                            "The register and tone are partially appropriate to the context, purpose, and audience of the task.",
+                            "The response incorporates limited recognizable conventions of the chosen text type.",
+                        ],
+                    ],
+                },
+                { 
+                    headerContent: "<u>Still Developing</u> Application of Language, Message and Conceptual Understanding",
+                    points: 2,
+                    cells: [
+                        [
+                            "Vocab is sometimes appropriate to the task",
+                            "Basic grammatical structures are used",
+                            "Language contains errors in basic structures",
+                            "Errors interfere with communication.",
+                        ],
+                        [
+                            "Few ideas are relevant to the task",
+                            "Ideas are stated but with no development",
+                            "Ideas are not clearly presented and do not follow a structure making the message difficult to determine.",
+                        ],
+                        [
+                            "The choice of text type is generally inappropriate to the context, purpose or audience.",
+                            "The register and tone are inappropriate to the context, purpose, and audience of the task.",
+                            "The response incorporates little to no recognizable conventions of the chosen text type.",
+                        ],
+                    ],
+                },
+            ],
+        }
+       
+        this.state.selectedMatrix = []
+
+        this.state.rows.forEach((row, rowIndex) => {
+            this.state.selectedMatrix.push([])
+            row.cells.forEach((cell, colIndex) => {
+                this.state.selectedMatrix[rowIndex].push([])
+                cell.forEach((element, itemIndex) => {
+                    this.state.selectedMatrix[rowIndex][colIndex].push([])
+                    this.state.selectedMatrix[rowIndex][colIndex][itemIndex] = false
+                });
+            });
+        });
+
+        this.onRubricItemClick = this.onRubricItemClick.bind(this);
+    }
+
     render() {
+
         return (
         <div className="container">
             <table className="table table-sm table-bordered" style={{fontSize: ".8em"}}>
                 <thead>
                     <RubricRow>
                         <RubricCol header={true}>
-                            Modified IB Written (Text Type) Assessment Rubric (15pts)
+                            {this.state.assignmentDescription}
                         </RubricCol>
-                        <RubricCol header={true}>
-                            Language
-                        </RubricCol>
-                        <RubricCol header={true}>
-                            Message
-                        </RubricCol>
-                        <RubricCol header={true}>
-                            Conceptual Understaning
-                        </RubricCol>
+                        {this.state.categories.map((item, i) => {
+                            return (
+                                <RubricHeader key={i} score="5">
+                                    {item}
+                                </RubricHeader>
+                            )
+                        })}
                     </RubricRow>
                 </thead>
                 <tbody>
-                    <RubricRow>
-                        <RubricCol>
-                            <p>
-                                <strong>5</strong>
-                                <br/>
-                                <u>Superior</u> Application of Language, Message and Conceptual Understanding
-                            </p>
-                        </RubricCol>
-                        <RubricCol>
-                            <RubricItemList>
-                                    <RubricItem>
-                                        Varied complexity of grammar
-                                    </RubricItem>
-                                    <RubricItem>
-                                        Sophisticated/complex structures used effectively
-                                    </RubricItem>
-                                    <RubricItem>
-                                        Vocab appropriate and varied with distinct idiomatic expressions
-                                    </RubricItem>
-                                    <RubricItem>
-                                        Language is accurate except for perhaps an occasional minor error in complex structures
-                                    </RubricItem>
-                            </RubricItemList>
-                        </RubricCol>
-                        <RubricCol>
-                            <RubricItemList>
-                                <RubricItem>
-                                    Ideas are fully developed, providing strong details, relevant examples and evidence
-                                </RubricItem>
-                                <RubricItem>
-                                    Superior level of substantiating one's claim
-                                </RubricItem>
-                                <RubricItem>
-                                    Ideas are clearly structured in a logical manner, which strongly support the delivery of the message    
-                                </RubricItem>
-                            </RubricItemList>
-                        </RubricCol>
-                        <RubricCol>
-                            <RubricItemList>
-                                <RubricItem>
-                                    The choice of text type is clearly appropriate to the context, purpose and audience.
-                                </RubricItem>
-                                <RubricItem>
-                                    The register and tone are clearly appropriate to the context, purpose and audience of the task.
-                                </RubricItem>
-                                <RubricItem>
-                                    The response fully incorporates the conventions of the chosen text.
-                                </RubricItem>
-                            </RubricItemList>
-                        </RubricCol>
-                    </RubricRow>
-                    <RubricRow>
-                        <RubricCol>
-                            <p>
-                                <strong>4</strong> <br/>
-                                <u>Proficient</u> Application of Language, Message and Conceptual Understanding
-                            </p>
-                        </RubricCol>
-                        <RubricCol>
-                            <RubricItemList>
-                                <RubricItem>
-                                    A mix of basic and complex grammar used
-                                </RubricItem>
-                                <RubricItem>
-                                    Vocab appropriate and varied
-                                </RubricItem>
-                                <RubricItem>
-                                    Occasional errors in both basic and complex grammatical structures
-                                </RubricItem>
-                                <RubricItem>
-                                    Errors do not interfere with communication
-                                </RubricItem>
-                            </RubricItemList>
-                        </RubricCol>
-                        <RubricCol>
-                            <RubricItemList>
-                                <RubricItem>
-                                    Most ideas are relevant
-                                </RubricItem>
-                                <RubricItem>
-                                    Ideas are adequately developed which include some details/examples
-                                </RubricItem>
-                                <RubricItem>
-                                    Ideas are structured in a manner, which generally supports the delivery
-                                </RubricItem>
-                            </RubricItemList>
-                        </RubricCol>
-                        <RubricCol>
-                            <RubricItemList>
-                                <RubricItem>
-                                    The choice of text type is generally appropriate to the context, purpose and audience.
-                                </RubricItem>
-                                <RubricItem>
-                                    The register and tone, while occasionally appropriate
-                                    to the context, purpose and audience of the task,
-                                    fluctuate throughout the response.
-                                </RubricItem>
-                                <RubricItem>
-                                    The response incorporates some conventions of the
-                                    chosen text type.
-                                </RubricItem>
-                            </RubricItemList>
-                        </RubricCol>
-                    </RubricRow>
-                    <RubricRow>
-                        <RubricCol>
-                            <p>
-                                <strong>3</strong><br/>
-                                <u>Limited</u> Application of Language, Message and Conceptual Understanding
-                            </p>
-                        </RubricCol>
-                        <RubricCol>
-                            <RubricItemList>
-                                <RubricItem>
-                                    Vocab is generally appropriate
-                                </RubricItem>
-                                <RubricItem>
-                                    Mostly basic grammar structures
-                                </RubricItem>
-                                <RubricItem>
-                                    Language is mostly accurate for basic structures
-                                </RubricItem>
-                                <RubricItem>
-                                    Errors in more complex structures
-                                </RubricItem>
-                                <RubricItem>
-                                    Errors at times interfere with communication
-                                </RubricItem>
-                            </RubricItemList>
-                        </RubricCol>
-                        <RubricCol>
-                            <RubricItemList>
-                                <RubricItem>
-                                    Some ideas are relevant to the task
-                                </RubricItem>
-                                <RubricItem>
-                                    Ideas outlined but not fully developed
-                                </RubricItem>
-                                <RubricItem>
-                                    Ideas are presented and structured in a way that leads to a more or less successful delivery of the message
-                                </RubricItem>
-                            </RubricItemList>
-                        </RubricCol>
-                        <RubricCol>
-                            <RubricItemList>
-                                <RubricItem>
-                                    The choice of text type is partially appropriate to the context, purpose or audience.
-                                </RubricItem>
-                                <RubricItem>
-                                    The register and tone are partially appropriate to the context, purpose, and audience of the task.
-                                </RubricItem>
-                                <RubricItem>
-                                    The response incorporates limited recognizable conventions of the chosen text type.
-                                </RubricItem>
-                            </RubricItemList>
-                        </RubricCol>
-                    </RubricRow>
-                    <RubricRow>
-                        <RubricCol>
-                            <p>
-                                <strong>2</strong><br/>
-                                <u>Still Developing</u> Application of Language, Message and Conceptual Understanding
-                            </p>
-                        </RubricCol>
-                        <RubricCol>
-                            <RubricItemList>
-                                <RubricItem>
-                                    Vocab is sometimes appropriate to the task
-                                </RubricItem>
-                                <RubricItem>
-                                    Basic grammatical structures are used
-                                </RubricItem>
-                                <RubricItem>
-                                    Language contains errors in basic structures
-                                </RubricItem>
-                                <RubricItem>
-                                    Errors interfere with communication.
-                                </RubricItem>
-
-                            </RubricItemList>
-                        </RubricCol>
-                        <RubricCol>
-                            <RubricItemList>
-                                <RubricItem>
-                                    Few ideas are relevant to the task
-                                </RubricItem>
-                                <RubricItem>
-                                    Ideas are stated but with no development
-                                </RubricItem>
-                                <RubricItem>
-                                    Ideas are not clearly presented and do not follow a structure making the message difficult to determine.
-                                </RubricItem>
-                            </RubricItemList>
-                        </RubricCol>
-                        <RubricCol>
-                            <RubricItemList>
-                                <RubricItem>
-                                    The choice of text type is generally inappropriate to the context, purpose or audience.
-                                </RubricItem>
-                                <RubricItem>
-                                    The register and tone are inappropriate to the context, purpose, and audience of the task.
-                                </RubricItem>
-                                <RubricItem>
-                                    The response incorporates little to no recognizable conventions of the chosen text type.
-                                </RubricItem>
-                            </RubricItemList>
-                        </RubricCol>
-                    </RubricRow>
+                    {this.state.rows.map((item, i) => {
+                        return (
+                            <RubricRow key={i}>
+                                <RubricCol>
+                                    <p>
+                                        <strong>{item.points}</strong><br/>
+                                        <span dangerouslySetInnerHTML={{__html: item.headerContent}}></span>
+                                    </p>
+                                </RubricCol>
+                                {item.cells.map((cell, j) => {
+                                    return (
+                                        <RubricCol key={j}>
+                                            <RubricItemList row={i} col={j} key={j} items={cell} toggleSelected={this.onRubricItemClick.bind(this, i, j)} selectedMatrix={this.state.selectedMatrix[i][j]} />                                        
+                                        </RubricCol>
+                                    )
+                                })}
+                            </RubricRow>
+                        )
+                    })}
                 </tbody>
             </table>
         </div>
         )
+    }
+
+    onRubricItemClick(row, col, itemNumber) {
+        this.state.selectedMatrix[row][col][itemNumber] = !this.state.selectedMatrix[row][col][itemNumber]
+        this.setState({selectedMatrix: this.state.selectedMatrix})
     }
 }

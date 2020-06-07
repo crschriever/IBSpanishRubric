@@ -7,7 +7,6 @@ export default class RubricItem extends React.Component {
         super(props);
         this.state = {
             hover: false,
-            selected: false
         }
 
         this.toggleHover = this.toggleHover.bind(this)
@@ -20,7 +19,7 @@ export default class RubricItem extends React.Component {
             cursor: "pointer"
         };
 
-        if (this.state.selected) {
+        if (this.props.selected) {
             styles.backgroundColor = "rgb(198, 223, 253)"
         } else {
             styles.backgroundColor = this.state.hover ? "lightgray" : ""
@@ -34,6 +33,6 @@ export default class RubricItem extends React.Component {
     }
 
     toggleSelected() {
-        this.setState({selected: !this.state.selected})
+        this.props.toggleSelected(this.props.index)
     }
 }
