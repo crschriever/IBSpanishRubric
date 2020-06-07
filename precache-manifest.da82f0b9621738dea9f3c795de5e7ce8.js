@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "012ff8b83ca9d5dd0959636d764411fb",
+    "revision": "4db4ca827c0aa20f44fd23c9c0aec952",
     "url": "/IBSpanishRubric/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/IBSpanishRubric/static/js/2.5a021ed6.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "932af270b922bcd49205",
-    "url": "/IBSpanishRubric/static/js/main.87743cf4.chunk.js"
+    "revision": "17478491c4fb1db99ab5",
+    "url": "/IBSpanishRubric/static/js/main.b11dc4b7.chunk.js"
   },
   {
     "revision": "d9e3c863aedc8a38c658",
